@@ -1,10 +1,1 @@
-TODO
-
-WEIGHTED
-
-[ ] Add metadata to queries
-[ ] Make model respond more accurately to queries
-
-NON WEIGHTED
-
-[ ] 
+## please checkout open issues and add your name to the list of contributors
