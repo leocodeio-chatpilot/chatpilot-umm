@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.1.1...v1.2.0) (2025-04-25)
+
+
+### Features
+
+* **auth end to end:** auth end to end ([06bfa25](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/06bfa25219331241d759e1dbb3eb60d4116ac014))
+
 ## [1.1.1](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.1.0...v1.1.1) (2025-04-25)
 
 
