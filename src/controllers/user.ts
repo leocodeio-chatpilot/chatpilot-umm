@@ -115,7 +115,7 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       email: user.email!,
       role: user.role! as "user" | "admin",
     });
-  
+
     createCookie(req, res, accessToken, refreshToken, {
       message: "Signin successful",
       payload: {},
@@ -157,10 +157,30 @@ export const getProfile = async (
       return;
     }
 
+    // get user apis
+    const userApis = await client.modelapi.findMany({
+      where: { user_id: id },
+    });
+
+    if (!userApis) {
+      res.status(404).json({
+        message: "you donot have any apis for this userId",
+        payload: {},
+      });
+      return;
+    }
+
+    const apiKeys =
+      userApis.map((key: any) => ({
+        website_name: key.website_name,
+        api_key: key.api_key,
+      })) || [];
+
     res.status(200).json({
       message: "Profile fetched successfully",
       payload: {
         user: user,
+        apiKeys: apiKeys,
       },
     });
   } catch (error) {
