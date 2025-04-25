@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.0.0...v1.1.0) (2025-04-25)
+
+
+### Features
+
+* **user details to new implementation:** user details to new implementation ([19942b7](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/19942b7cfd596b36a6261bf672a0d48efd8220f4))
+
 # 1.0.0 (2025-03-30)
 
 
