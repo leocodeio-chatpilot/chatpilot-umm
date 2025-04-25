@@ -43,7 +43,7 @@ export type User = {
 export type TokenPayload = {
   id: string;
   email: string;
-  username: string;
+  role: "user" | "admin";
 };
 
 export type ResponseData = {

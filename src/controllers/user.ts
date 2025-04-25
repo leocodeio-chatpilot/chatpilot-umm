@@ -3,7 +3,10 @@ import client from "../db/client";
 import { compare, hash } from "../utils/crypt/mycrypt";
 import { Request, Response } from "express";
 import { createCookie } from "../utils/cookie/createCookie";
-import { createToken } from "../utils/token/createToken";
+import {
+  createAccessToken,
+  createRefreshToken,
+} from "../utils/token/createToken";
 import { destroyCookie } from "../utils/cookie/destroyCookie";
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
@@ -102,13 +105,18 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       });
       return;
     }
-
-    const token = createToken({
-      id: user.id,
-      email: user.email,
-      username: user.username,
+    const accessToken = createAccessToken({
+      id: user.id!,
+      email: user.email!,
+      role: user.role as "user",
     });
-    createCookie(req, res, token, {
+    const refreshToken = createRefreshToken({
+      id: user.id!,
+      email: user.email!,
+      role: user.role! as "user" | "admin",
+    });
+  
+    createCookie(req, res, accessToken, refreshToken, {
       message: "Signin successful",
       payload: {},
     });
@@ -135,10 +143,19 @@ export const getProfile = async (
   res: Response
 ): Promise<void> => {
   try {
-    const userId = req.userId;
+    const id = req.id;
+    console.log("Get profile is hit\n", id);
     const user = await client.user.findUnique({
-      where: { id: userId },
+      where: { id: id },
     });
+
+    if (!user) {
+      res.status(404).json({
+        message: "User not found",
+        payload: {},
+      });
+      return;
+    }
 
     res.status(200).json({
       message: "Profile fetched successfully",

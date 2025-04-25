@@ -4,7 +4,9 @@ import { validateToken } from "../utils/token/validateToken";
 declare global {
   namespace Express {
     export interface Request {
-      userId?: string;
+      id?: string;
+      role?: string;
+      email?: string;
     }
   }
 }
@@ -14,17 +16,22 @@ export const isAuthenticated = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { Authorization } = req.cookies;
-  // console.log(Authorization);
-  if (!Authorization) {
+  const { "access-token": accessToken, "refresh-token": refreshToken } =
+    req.cookies;
+
+  console.log("Access Token:", accessToken);
+  if (!accessToken) {
     res.status(401).json({
       message: "You are not signed in",
     });
     return;
   }
 
-  const decoded = validateToken(Authorization);
-  req.userId = decoded.id;
+  const decoded = validateToken(accessToken);
+  console.log("Decoded Access Token:", decoded);
+  req.id = decoded.id;
+  req.role = decoded.role;
+  req.email = decoded.email;
   next();
 };
 

@@ -1,20 +1,29 @@
 import { Request, Response } from "express";
-import { ResponseData } from "../../types";
 
 export const createCookie = (
   req: Request,
   res: Response,
-  token: string,
-  responseData: ResponseData
+  accessToken: string,
+  refreshToken: string,
+  responseData: any
 ): void => {
   res
     .status(200)
-    .cookie("Authorization", token, {
+    .cookie("access-token", accessToken, {
       httpOnly: false, // Change to false so JavaScript can access it
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
       path: "/",
-      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+      maxAge: 4 * 60 * 60 * 1000, // 4 hours
     })
+    .cookie("refresh-token", refreshToken, {
+      httpOnly: false, // Change to false so JavaScript can access it
+
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 48 * 60 * 60 * 1000, // 48 hours
+    })
+
     .json(responseData);
 };

@@ -35,7 +35,8 @@
     "lint": "eslint src/**/*.ts",
     "prepare": "husky",
     "typecheck": "tsc",
-    "commit": "cz"
+    "commit": "cz",
+    "approve-builds": "pnpm --filter=... dlx pnpm-approve-builds"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
