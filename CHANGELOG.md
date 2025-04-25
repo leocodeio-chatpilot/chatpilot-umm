@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.1.0...v1.1.1) (2025-04-25)
+
+
+### Performance Improvements
+
+* **updated me:** updated me ([fc9bc33](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/fc9bc33cc7055d7323baf15f85cee5c2890564bc))
+
 # [1.1.0](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.0.0...v1.1.0) (2025-04-25)
 
 
