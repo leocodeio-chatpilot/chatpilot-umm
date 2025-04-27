@@ -24,6 +24,7 @@ export const saveApiSchema = z.object({
   userId: z.string(),
   websiteName: z.string(),
   websiteUrl: z.string(),
+  mode: z.enum(["sample", "complete"]),
 });
 
 export const queryApiSchema = z.object({
