@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.0...v1.2.1) (2025-04-27)
+
+
+### Performance Improvements
+
+* **removed not needed code:** removed not needed code ([b43802c](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/b43802c8ba70db9bba48c83353b5857c62fbc59e))
+
 # [1.2.0](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.1.1...v1.2.0) (2025-04-25)
 
 
