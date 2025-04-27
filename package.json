@@ -1,6 +1,6 @@
 {
   "name": "backend_chatpilot",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "dist/index.js",
   "dependencies": {
     "@prisma/client": "^5.22.0",

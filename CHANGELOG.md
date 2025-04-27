@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.2...v1.2.3) (2025-04-27)
+
+
+### Performance Improvements
+
+* **docker image:** docker image ([7f5e1ab](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/7f5e1ab98900b1c42ed0b9b47c2768b025d131c7))
+
 ## [1.2.2](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.1...v1.2.2) (2025-04-27)
 
 
