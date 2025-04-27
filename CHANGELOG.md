@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.3...v1.2.4) (2025-04-27)
+
+
+### Performance Improvements
+
+* **dep:** dep ([553efb4](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/553efb4c7a6ae8a35c178e5bda802d1fc27ead39))
+
 ## [1.2.3](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.2...v1.2.3) (2025-04-27)
 
 
