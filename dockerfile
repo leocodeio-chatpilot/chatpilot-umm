@@ -43,7 +43,7 @@ RUN chown -R node:node /app
 # Use non-root user for security
 USER node
 
-EXPOSE 3001
+EXPOSE 3000
 
 # Use the start script from package.json
 CMD ["npm", "run", "start"]
