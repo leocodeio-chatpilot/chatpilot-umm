@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.1...v1.2.2) (2025-04-27)
+
+
+### Performance Improvements
+
+* **updated code to int ui:** updated code to int ui ([70208eb](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/70208eba25716907cca13ddc945aec8cde6b1bd6))
+
 ## [1.2.1](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.0...v1.2.1) (2025-04-27)
 
 
