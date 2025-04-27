@@ -18,6 +18,7 @@ export const isAuthenticated = async (
 ) => {
   const { "access-token": accessToken, "refresh-token": refreshToken } =
     req.cookies;
+  // console.log(req.cookies);
 
   console.log("Access Token:", accessToken);
   if (!accessToken) {
@@ -46,7 +47,7 @@ export const isApikeyAuthenticated = async (
   const apiKeyAccepted = apiKey === process.env.X_API_KEY;
   if (!apiKeyAccepted) {
     res.status(403).json({
-      message: "You are not authorized to do this",
+      message: "API key is not provided, you can not access this resource",
     });
     return;
   }
