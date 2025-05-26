@@ -7,7 +7,7 @@
  * ChromaDB client
  */
 export const client = new ChromaClient({
-  path: "http://localhost:8000",
+  path: process.env.CHROMA_DB_URL!,
 });
 
 import { ChromaClient, Collection } from "chromadb";
