@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "rootDir": "./src" ,
-    "module": "NodeNext",
+    "rootDir": "./src",
+    "module": "CommonJS",
     "moduleDetection": "force",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Node",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

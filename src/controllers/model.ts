@@ -2,6 +2,10 @@ import { Request, Response } from "express";
 import client from "../db/client";
 import { saveApiSchema, queryApiSchema } from "../types";
 import axios from "axios";
+import { WebScrapper } from "../utils/core/scraping/web-scrapper";
+import { randomUUID } from "crypto";
+import { SimilaritySearch } from "../utils/core/similarity/similarity";
+import { BaseChromaProcessor } from "../utils/core/chroma/chromadb";
 
 export const saveApikey = async (req: Request, res: Response) => {
   console.log("save api key called");
@@ -21,31 +25,61 @@ export const saveApikey = async (req: Request, res: Response) => {
   // console.log(user);
   try {
     try {
-      const chatpilotApi = process.env.BACKEND_PYTHON_MODEL_API;
-      const apikeyResponse = await axios.post(`${chatpilotApi}/${mode}`, {
-        url: websiteUrl,
+      // const chatpilotApi = process.env.BACKEND_PYTHON_MODEL_API;
+      // const apikeyResponse = await axios.post(`${chatpilotApi}/${mode}`, {
+      //   url: websiteUrl,
+      // });
+
+      // create the api key
+      const apikey = randomUUID();
+
+      // scrape the website
+      const webScrapper = new WebScrapper(websiteUrl, apikey, {
+        text: true,
+        images: false,
+        routes: false,
       });
+      const scrapedData = await webScrapper.scrape();
+      console.log("scrapedData", userId);
+      // create the model api
       const modelApiPaylod = {
         user_id: userId,
         website_name: websiteName,
         website_url: websiteUrl,
-        api_key: apikeyResponse.data,
+        api_key: apikey,
       };
-      await client.modelapi.create({
-        data: modelApiPaylod,
-        select: {
-          user_id: true,
-          website_name: true,
-          website_url: true,
-          api_key: true,
+      console.log("2");
+      const user = await client.user.findUnique({
+        where: {
+          id: userId,
         },
       });
 
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const modelApi = await client.modelapi
+        .create({
+          data: modelApiPaylod,
+          select: {
+            user_id: true,
+            website_name: true,
+            website_url: true,
+            api_key: true,
+          },
+        })
+        .catch((err) => {
+          console.log("error while creating the model api", err);
+        });
       res.status(201).json({
         message: "Api created successfully",
+        payload: {
+          modelApi: modelApi,
+        },
       });
     } catch (err: any) {
-      console.log("error while getting the apikey from chatpilot server");
+      console.log("error while getting the apikey from chatpilot server", err);
       res.status(500).send({
         message: "An unexpected error occurred during signup",
         payload: {
@@ -89,16 +123,20 @@ export const queryModelApi = async (req: Request, res: Response) => {
       return;
     }
     // console.log(modelApi);
-    const chatpilotApi = process.env.BACKEND_PYTHON_MODEL_API;
-    const modelResponse = await axios.post(`${chatpilotApi}/query`, {
-      query_text: queryText,
-      api_key: apiKey,
-    });
-    console.log("debug log 2 - model.ts", modelResponse.data.results);
+    // const chatpilotApi = process.env.BACKEND_PYTHON_MODEL_API;
+    // const modelResponse = await axios.post(`${chatpilotApi}/query`, {
+    //   query_text: queryText,
+    //   api_key: apiKey,
+    // });
+    console.log("1");
+    const similaritySearch = new SimilaritySearch(apiKey);
+    console.log("2");
+    const modelResponse = await similaritySearch.query(queryText);
+    console.log("debug log 2 - model.ts", modelResponse);
     res.status(200).json({
       message: "query successfull",
       payload: {
-        response: modelResponse.data.results,
+        response: modelResponse,
       },
     });
   } catch (error: any) {
