@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.4...v1.3.0) (2025-05-26)
+
+
+### Features
+
+* **env:** env ([36a7c6d](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/36a7c6d2c09ef6dde7cd7e37270d90a2e5027b57))
+* **removed py dependency:** removed py dependency ([28c14c3](https://github.com/leocodeio-chatpilot/chatpilot-umm/commit/28c14c35a863e06061433a4a8c8b31bde71f9715))
+
 ## [1.2.4](https://github.com/leocodeio-chatpilot/chatpilot-umm/compare/v1.2.3...v1.2.4) (2025-04-27)
 
 
